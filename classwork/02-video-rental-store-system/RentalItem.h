@@ -14,6 +14,7 @@ public:
     void setType(const std::string& type);
     void setName(const std::string& name);
     void setPrice(int price);
+    void setCount(int count);
     void setAvailable(bool available);
 
     // getters
@@ -25,7 +26,7 @@ public:
     bool getAvailable() const;
 
     // other member functions
-    std::string print() const;
+    std::string toString() const;
 private:
     int m_id;
     std::string m_type;

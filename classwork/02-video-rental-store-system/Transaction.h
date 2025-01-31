@@ -31,6 +31,7 @@ public:
     bool getLate() const;
 
     // other member functions
+    std::string toString() const;
     int calculateRentalCharge() const;
 private:
     int m_id;

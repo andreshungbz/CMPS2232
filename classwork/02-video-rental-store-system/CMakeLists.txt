@@ -7,4 +7,7 @@ add_executable(02_video_rental_store_system main.cpp
         Customer.h
         RentalItem.h
         Transaction.h
+        RentalSystem.h
+        Clerk.h
+        Manager.h
 )

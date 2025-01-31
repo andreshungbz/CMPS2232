@@ -1,23 +1,24 @@
-#ifndef CUSTOMER_H
-#define CUSTOMER_H
+#ifndef CLERK_H
+#define CLERK_H
 
 #include <string>
+#include "RentalSystem.h"
 
-class Customer {
+class Clerk {
 public:
     // constructor
-    Customer(int id, const std::string& fName, const std::string& lName,
+    Clerk(int id, const std::string& fName, const std::string& lName,
         const std::string& address, const std::string& phone);
 
     // setters
-    void setID(int id);
+    void setEmployeeID(int id);
     void setFirstName(const std::string& fName);
     void setLastName(const std::string& lName);
     void setAddress(const std::string& address);
     void setPhone(const std::string& phone);
 
     // getters
-    int getID() const;
+    int getEmployeeID() const;
     std::string getFirstName() const;
     std::string getLastName() const;
     std::string getAddress() const;
@@ -25,8 +26,13 @@ public:
 
     // other member functions
     std::string toString() const;
+    bool addCustomer(RentalSystem& rs, const std::string& fName, const std::string& lName,
+        const std::string& address, const std::string& phone);
+    bool rentItem(RentalSystem& rs, int c_id, int i_id);
+    bool returnItem(RentalSystem& rs, int t_id);
+    void generateSystemReport(RentalSystem& rs) const;
 private:
-    int m_id;
+    std::string m_employeeID;
     std::string m_firstName;
     std::string m_lastName;
     std::string m_address;
@@ -35,4 +41,4 @@ private:
 
 
 
-#endif // CUSTOMER_H
+#endif // CLERK_H
