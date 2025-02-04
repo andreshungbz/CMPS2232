@@ -6,7 +6,7 @@
 
 class Catalogue {
 public:
-    void add(Attributes* const attrs);
+    void add(Attributes* attrs);
 
     std::vector<Book*> find(const Attributes& target_attrs) const;
 private:

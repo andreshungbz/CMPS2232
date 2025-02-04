@@ -25,7 +25,7 @@ enum type_indexes {
 
 class Attributes {
 public:
-    Attributes(AttributeMap* const pairs);
+    explicit Attributes(AttributeMap* pairs);
     ~Attributes() { delete attribute_map; }
 
     bool is_match(const Attributes& target_attrs) const;

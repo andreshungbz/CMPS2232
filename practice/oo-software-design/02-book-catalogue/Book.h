@@ -2,12 +2,11 @@
 #define BOOK_H
 
 #include <iostream>
-#include <string>
 #include "Attributes.h"
 
 class Book {
 public:
-    Book(Attributes* const attrs)
+    explicit Book(Attributes* const attrs)
         : attributes{attrs} {}
     virtual ~Book() { delete attributes; }
 
