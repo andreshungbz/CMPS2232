@@ -1,6 +1,10 @@
 #include "Catalogue.h"
 #include "Book.h"
 
+void Catalogue::add(Attributes* const attrs) {
+    booklist.push_back(new Book{attrs});
+}
+
 std::vector<Book*> Catalogue::find(const Attributes& target_attrs) const {
     std::vector<Book*> matches;
 

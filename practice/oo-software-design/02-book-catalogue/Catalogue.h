@@ -6,9 +6,7 @@
 
 class Catalogue {
 public:
-    void add(Attributes* const attrs) {
-        booklist.push_back(new Book{attrs});
-    }
+    void add(Attributes* const attrs);
 
     std::vector<Book*> find(const Attributes& target_attrs) const;
 private:

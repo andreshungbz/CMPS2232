@@ -1,6 +1,8 @@
 #ifndef BOOK_H
 #define BOOK_H
 
+#include <iostream>
+#include <string>
 #include "Attributes.h"
 
 class Book {
@@ -14,6 +16,10 @@ private:
     Attributes* attributes;
 };
 
+inline std::ostream& operator <<(std::ostream& ostr, const Book& book) {
+    std::cout << *book.get_attributes();
+    return ostr;
+}
 
 
 #endif // BOOK_H

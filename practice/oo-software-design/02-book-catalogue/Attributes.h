@@ -30,7 +30,7 @@ public:
 
     bool is_match(const Attributes& target_attrs) const;
 
-    friend std::ostream& operator <<(std::ostream ostr, const Attributes& attrs);
+    friend std::ostream& operator <<(std::ostream& ostr, const Attributes& attrs);
 private:
     AttributeMap* attribute_map;
 
