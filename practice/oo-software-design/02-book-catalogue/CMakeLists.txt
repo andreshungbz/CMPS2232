@@ -9,4 +9,9 @@ add_executable(02_book_catalogue main.cpp
         Catalogue.cpp
         Catalogue.h
         Attributes.cpp
-        Attributes.h)
+        Attributes.h
+        Key.h
+        Kind.h
+        Genre.h
+        Region.h
+        Subject.h)

@@ -1,60 +1,40 @@
 #ifndef ATTRIBUTES_H
 #define ATTRIBUTES_H
 
-#include <iostream>
+#include <string>
+#include <map>
+#include <variant>
 
-enum class Genre {
-    ADVENTURE,
-    CLASSICS,
-    DETECTIVE,
-    FANTASY,
-    HISTORIC,
-    HORROR,
-    ROMANCE,
-    SCIFI,
-    UNSPECIFIED
+#include "Key.h"
+#include "Kind.h"
+#include "Genre.h"
+#include "Region.h"
+#include "Subject.h"
+
+typedef std::variant<int, std::string, Kind, Genre, Region, Subject> AttributeValue;
+typedef std::map<Key, AttributeValue> AttributeMap;
+
+enum type_indexes {
+    INT_INDEX,
+    STRING_INDEX,
+    KIND_INDEX,
+    GENRE_INDEX,
+    REGION_INDEX,
+    SUBJECT_INDEX
 };
-
-inline std::ostream& operator <<(std::ostream& ostr, const Genre& genre) {
-    switch (genre) {
-    case Genre::ADVENTURE: ostr << "adventure"; break;
-    case Genre::CLASSICS: ostr << "classics"; break;
-    case Genre::DETECTIVE: ostr << "detective"; break;
-    case Genre::FANTASY: ostr << "fantasy"; break;
-    case Genre::HISTORIC: ostr << "historic"; break;
-    case Genre::HORROR: ostr << "horror"; break;
-    case Genre::ROMANCE: ostr << "romance"; break;
-    case Genre::SCIFI: ostr << "scifi"; break;
-    default: ostr << "unspecified"; break;
-    }
-
-    return ostr;
-}
 
 class Attributes {
 public:
-    Attributes(const std::string& ttl, const std::string& lst, const std::string& fst, const int yr, const Genre gen)
-        : title{ttl}, last{lst}, first{fst}, year{yr}, genre{gen} {}
+    Attributes(AttributeMap* const pairs);
+    ~Attributes() { delete attribute_map; }
 
-    std::string get_title() const { return title; }
-    std::string get_last() const { return last; }
-    std::string get_first() const { return first; }
-    int get_year() const { return year; }
-    Genre get_genre() const { return genre;}
+    bool is_match(const Attributes& target_attrs) const;
 
-    bool is_match(const Attributes& target_attrs) const {
-        return equal_ignore_case(target_attrs.get_title(), title)
-            && equal_ignore_case(target_attrs.get_last(), last)
-            && equal_ignore_case(target_attrs.get_first(), first)
-            && ((target_attrs.get_year() == 0) || (target_attrs.get_year() == year))
-            && ((target_attrs.get_genre() == Genre::UNSPECIFIED) || (target_attrs.get_genre() == genre));
-    }
+    friend std::ostream& operator <<(std::ostream ostr, const Attributes& attrs);
 private:
-    std::string title;
-    std::string last;
-    std::string first;
-    int year;
-    Genre genre;
+    AttributeMap* attribute_map;
+
+    bool is_matching_pair(const Key& target_key, const AttributeValue& target_value) const;
 
     static bool equal_ignore_case(const std::string& string1, const std::string& string2) {
         for (int i = 0; i < string1.length(); ++i) {
@@ -66,15 +46,5 @@ private:
         return true;
     }
 };
-
-inline std::ostream& operator <<(std::ostream& ostr, const Attributes& attrs) {
-    ostr << "{TITLE: '" << attrs.get_title()
-        << "', LAST: '" << attrs.get_last()
-        << "', FIRST: '" << attrs.get_first()
-        << "', YEAR: " << attrs.get_year()
-        << ", GENRE: " << attrs.get_genre() << "}";
-
-    return ostr;
-}
 
 #endif // ATTRIBUTES_H
