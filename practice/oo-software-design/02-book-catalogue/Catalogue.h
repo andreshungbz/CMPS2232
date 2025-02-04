@@ -1,29 +1,18 @@
 #ifndef CATALOGUE_H
 #define CATALOGUE_H
 
-#include <string>
 #include <vector>
 #include "Book.h"
 
 class Catalogue {
 public:
-    void add(const std::string& title, const std::string& last, const std::string& first) {
-        booklist.push_back(new Book{title, last, first});
+    void add(Attributes* const attrs) {
+        booklist.push_back(new Book{attrs});
     }
 
-    std::vector<Book*> find(const Book& target) const;
+    std::vector<Book*> find(const Attributes& target_attrs) const;
 private:
     std::vector<Book*> booklist;
-
-    static bool equal_ignore_case(const std::string& string1, const std::string& string2) {
-        for (int i = 0; i < string1.length(); ++i) {
-            if (std::tolower(string1[i]) != std::tolower(string2[i])) {
-                return false;
-            }
-        }
-
-        return true;
-    }
 };
 
 

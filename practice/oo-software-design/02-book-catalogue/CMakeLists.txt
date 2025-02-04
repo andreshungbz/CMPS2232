@@ -7,4 +7,6 @@ add_executable(02_book_catalogue main.cpp
         Book.cpp
         Book.h
         Catalogue.cpp
-        Catalogue.h)
+        Catalogue.h
+        Attributes.cpp
+        Attributes.h)
