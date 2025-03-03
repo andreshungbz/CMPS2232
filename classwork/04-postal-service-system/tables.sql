@@ -1,6 +1,22 @@
+-- PostgreSQL User Setup, assuming superuser in postal_service database
+
+DO $$ 
+BEGIN
+    IF EXISTS (SELECT 1 FROM pg_roles WHERE rolname = 'postal_service_user') THEN
+        REVOKE ALL PRIVILEGES ON SCHEMA public FROM postal_service_user;
+        REASSIGN OWNED BY postal_service_user TO andreshung;
+        DROP OWNED BY postal_service_user;
+        DROP ROLE postal_service_user;
+    END IF;
+END $$;
+
+CREATE ROLE postal_service_user WITH LOGIN PASSWORD '$swordfish123';
+GRANT ALL PRIVILEGES ON SCHEMA public TO postal_service_user;
+
 DROP TABLE IF EXISTS package_type CASCADE;
 DROP TABLE IF EXISTS package CASCADE;
 DROP TABLE IF EXISTS employee CASCADE;
+\c postal_service postal_service_user
 
 CREATE TABLE package_type (
 id SERIAL PRIMARY KEY,
