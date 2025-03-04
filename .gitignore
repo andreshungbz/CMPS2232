@@ -15,3 +15,6 @@ qmake-build-*/
 
 # ignore files ending in .pro.user for Qt Creator
 *.pro.user
+
+# node modules
+node_modules/
