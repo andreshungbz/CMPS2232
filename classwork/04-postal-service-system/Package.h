@@ -40,7 +40,7 @@ public:
     // member functions
     virtual double calculateCost() const;
     virtual void printLabel() const;
-    bool updateStatus();
+    bool updateStatus(const std::string& status);
 
 private:
     int m_trackingNumber;
