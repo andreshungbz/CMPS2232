@@ -1,7 +1,10 @@
-import { IPackage } from './interfaces/IPackage';
+// Package Class
+
+import { PackageStatus } from './enums/packageStatus';
+import { ShippingMethod } from './enums/shippingMethod';
 import { PackageImpl } from './implementations/PackageImpl';
 
-export class Package extends PackageImpl implements IPackage {
+export class Package extends PackageImpl {
   constructor(
     trackingNumber: number,
     senderName: string,
@@ -10,9 +13,8 @@ export class Package extends PackageImpl implements IPackage {
     receiverAddress: string,
     weight: number,
     costPerUnitWeight: number,
-    flatFee: number,
-    shippingMethod: string = '',
-    status: string = ''
+    shippingMethod: ShippingMethod = ShippingMethod.Standard,
+    status: PackageStatus = PackageStatus.Created
   ) {
     super(
       trackingNumber,
@@ -22,7 +24,6 @@ export class Package extends PackageImpl implements IPackage {
       receiverAddress,
       weight,
       costPerUnitWeight,
-      flatFee,
       shippingMethod,
       status
     );

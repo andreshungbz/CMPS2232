@@ -1,4 +1,13 @@
-export class PackageImpl {
+// Package Class Implementation
+
+import { PackageStatus } from '../enums/packageStatus';
+import { ShippingMethod } from '../enums/shippingMethod';
+import { IPackage } from '../interfaces/IPackage';
+
+export class PackageImpl implements IPackage {
+  // constructor
+  // this shorthand automatically declares the data members
+
   constructor(
     protected trackingNumber: number,
     protected senderName: string,
@@ -7,18 +16,19 @@ export class PackageImpl {
     protected receiverAddress: string,
     protected weight: number,
     protected costPerUnitWeight: number,
-    protected flatFee: number,
-    protected shippingMethod: string,
-    protected status: string
+    protected shippingMethod: ShippingMethod,
+    protected status: PackageStatus
   ) {}
+
+  // getters
 
   getTrackingNumber(): number {
     return this.trackingNumber;
   }
-  getShippingMethod(): string {
+  getShippingMethod(): ShippingMethod {
     return this.shippingMethod;
   }
-  getStatus(): string {
+  getStatus(): PackageStatus {
     return this.status;
   }
   getSenderName(): string {
@@ -39,17 +49,16 @@ export class PackageImpl {
   getCostPerUnitWeight(): number {
     return this.costPerUnitWeight;
   }
-  getFlatFee(): number {
-    return this.flatFee;
-  }
+
+  // setters
 
   setTrackingNumber(trackingNumber: number): void {
     this.trackingNumber = trackingNumber;
   }
-  setShippingMethod(shippingMethod: string): void {
+  setShippingMethod(shippingMethod: ShippingMethod): void {
     this.shippingMethod = shippingMethod;
   }
-  setStatus(status: string): void {
+  setStatus(status: PackageStatus): void {
     this.status = status;
   }
   setSenderName(senderName: string): void {
@@ -70,22 +79,39 @@ export class PackageImpl {
   setCostPerUnitWeight(costPerUnitWeight: number): void {
     this.costPerUnitWeight = costPerUnitWeight;
   }
-  setFlatFee(flatFee: number): void {
-    this.flatFee = flatFee;
-  }
 
   calculateCost(): number {
-    return this.weight * this.costPerUnitWeight + this.flatFee;
+    return this.weight * this.costPerUnitWeight;
   }
+
+  // methods (member functions)
 
   printLabel(): void {
+    console.log(`[Package Details]`);
+    console.log(`Shipping Method: ${this.shippingMethod}`);
+    console.log(`Status: ${this.status}`);
     console.log(
-      `Shipping from ${this.senderName} (${this.senderAddress}) to ${this.receiverName} (${this.receiverAddress})`
+      `From ${this.senderName} (${this.senderAddress}) to ${this.receiverName} (${this.senderAddress})`
     );
+    console.log(`Weight (lbs): ${this.weight}`);
+    console.log(`Cost Per Unit Weight: $${this.costPerUnitWeight}`);
+
+    console.log(`Total Cost: $${this.calculateCost()}`);
   }
 
-  updateStatus(status: string): boolean {
-    this.status = status;
-    return true;
+  updateStatus(): boolean {
+    switch (this.status) {
+      case PackageStatus.Created:
+        this.status = PackageStatus.Shipped;
+        return true;
+      case PackageStatus.Shipped:
+        this.status = PackageStatus.InTransit;
+        return true;
+      case PackageStatus.InTransit:
+        this.status = PackageStatus.Delivered;
+        return true;
+      case PackageStatus.Delivered:
+        return false;
+    }
   }
 }

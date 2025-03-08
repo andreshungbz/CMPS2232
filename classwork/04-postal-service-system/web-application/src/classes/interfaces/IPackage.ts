@@ -1,27 +1,34 @@
+// Package Interface
+
+import { ShippingMethod } from '../enums/shippingMethod';
+import { PackageStatus } from '../enums/packageStatus';
+
 export interface IPackage {
+  // methods (member functions)
+
+  // getters
   getTrackingNumber(): number;
-  getShippingMethod(): string;
-  getStatus(): string;
+  getShippingMethod(): ShippingMethod;
+  getStatus(): PackageStatus;
   getSenderName(): string;
   getSenderAddress(): string;
   getReceiverName(): string;
   getReceiverAddress(): string;
   getWeight(): number;
   getCostPerUnitWeight(): number;
-  getFlatFee(): number;
 
+  // setters
   setTrackingNumber(trackingNumber: number): void;
-  setShippingMethod(shippingMethod: string): void;
-  setStatus(status: string): void;
+  setShippingMethod(shippingMethod: ShippingMethod): void;
+  setStatus(status: PackageStatus): void;
   setSenderName(senderName: string): void;
   setSenderAddress(senderAddress: string): void;
   setReceiverName(receiverName: string): void;
   setReceiverAddress(receiverAddress: string): void;
   setWeight(weight: number): void;
   setCostPerUnitWeight(costPerUnitWeight: number): void;
-  setFlatFee(flatFee: number): void;
 
   calculateCost(): number;
   printLabel(): void;
-  updateStatus(status: string): boolean;
+  updateStatus(): boolean;
 }

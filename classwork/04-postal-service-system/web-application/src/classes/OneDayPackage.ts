@@ -1,7 +1,10 @@
-import { IOneDayPackage } from './interfaces/IOneDayPackage';
+// One Day Package Class
+
+import { PackageStatus } from './enums/packageStatus';
+import { ShippingMethod } from './enums/shippingMethod';
 import { OneDayPackageImpl } from './implementations/OneDayPackageImpl';
 
-export class OneDayPackage extends OneDayPackageImpl implements IOneDayPackage {
+export class OneDayPackage extends OneDayPackageImpl {
   constructor(
     trackingNumber: number,
     senderName: string,
@@ -11,8 +14,8 @@ export class OneDayPackage extends OneDayPackageImpl implements IOneDayPackage {
     weight: number,
     costPerUnitWeight: number,
     flatFee: number,
-    shippingMethod: string = '',
-    status: string = ''
+    shippingMethod: ShippingMethod = ShippingMethod.OneDay,
+    status: PackageStatus = PackageStatus.Created
   ) {
     super(
       trackingNumber,

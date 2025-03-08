@@ -1,5 +1,11 @@
+// One Day Package Interface
+
 import { IPackage } from './IPackage';
 
 export interface IOneDayPackage extends IPackage {
-  calculateCost(): number;
+  // getters
+  getFlatFee(): number;
+
+  // setters
+  setFlatFee(flateFee: number): void;
 }
