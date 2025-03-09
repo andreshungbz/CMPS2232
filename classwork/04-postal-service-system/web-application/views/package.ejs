@@ -2,45 +2,62 @@
 <html lang="en">
   <head>
     <%- include('partials/common-meta') %>
-    <title>Package 1</title>
+    <title>Package #<%= id %></title>
   </head>
   <body>
     <main>
       <%- include('partials/header') %>
-      <h2>Package Details</h2>
+      <h2><%= type %> Package Details</h2>
       <form>
         <label
-          >Tracking Number: <input type="number" value="1" disabled />
+          >Tracking Number: <input type="number" value="<%= id %>" disabled />
         </label>
         <label
-          >Package Type: <input type="text" value="One Day Package" disabled />
+          >Package Type:
+          <input type="text" value="<%= type %> Package" disabled />
         </label>
         <label
-          >Shipping Method: <input type="text" value="One Day" disabled />
+          >Shipping Method: <input type="text" value="<%= type %>" disabled />
         </label>
-        <label>Status: <input type="text" value="Created" disabled /> </label>
         <label
-          >Sender Name: <input type="text" value="John Doe" disabled />
+          >Status: <input type="text" value="<%= status %>" disabled />
+        </label>
+        <label
+          >Sender Name: <input type="text" value="<%= senderName %>" disabled />
         </label>
         <label
           >Sender Address:
-          <input type="text" value="15 Flower Street" disabled />
+          <input type="text" value="<%= senderAddress %>" disabled />
         </label>
         <label
-          >Receiver Name: <input type="text" value="Jane Doe" disabled />
+          >Receiver Name:
+          <input type="text" value="<%= receiverName %>" disabled />
         </label>
         <label
           >Receiver Address:
-          <input type="text" value="1 Apple Street" disabled />
+          <input type="text" value="<%= receiverAddress %>" disabled />
         </label>
-        <label>Weight (lbs)<input type="number" value="1" disabled /> </label>
         <label
-          >Cost Per Unit Weight<input type="number" value="2" disabled />
+          >Weight (lbs)<input type="number" value="<%= weight %>" disabled />
         </label>
-        <label>Flat Fee<input type="number" value="0" disabled /> </label>
-        <button>Update to Next Status</button>
-        <button>Back</button>
+        <label
+          >Cost Per Unit Weight<input
+            type="number"
+            value="<%= costPerUnitWeight %>"
+            disabled
+          />
+        </label>
+        <label
+          >Flat Fee<input type="number" value="<%= flatFee %>" disabled />
+        </label>
       </form>
+      <div class="action-buttons">
+        <form><button>Update to Next Status</button></form>
+        <form><button>Delete Package</button></form>
+        <form method="GET" action-="/">
+          <button type="submit">Back</button>
+        </form>
+      </div>
     </main>
   </body>
 </html>

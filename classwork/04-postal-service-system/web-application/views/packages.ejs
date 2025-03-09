@@ -9,18 +9,23 @@
       <%- include('partials/header') %>
       <h2>Packages</h2>
       <ul>
-        <a href="#"><li>[1] One Day Package (Created)</li></a>
-        <a href="#"><li>[2] One Day Package (Created)</li></a>
-        <a href="#"><li>[3] Two Day Package (In Transit)</li></a>
-        <a href="#"><li>[4] Regular Package (Delivered)</li></a>
+        <% packages.forEach((pkg) => { %>
+        <a href="/package/<%= pkg.getTrackingNumber() %>">
+          <li>
+            [<%= pkg.getTrackingNumber() %>] <%= pkg.constructor.name %> (<%=
+            pkg.getStatus() %>)
+          </li>
+        </a>
+        <% }) %>
       </ul>
-      <form>
-        <button>Add Package</button>
-        <button>Show One Day Packages</button>
-        <button>Show Two Day Packages</button>
-        <label>Find Package by ID: <input type="number" /> </label>
-        <button>Logout</button>
-      </form>
+      <div class="action-buttons">
+        <form action="/package/add" method="GET">
+          <button type="submit">Add Package</button>
+        </form>
+        <form action="/logout" method="POST">
+          <button type="submit">Logout</button>
+        </form>
+      </div>
     </main>
   </body>
 </html>
