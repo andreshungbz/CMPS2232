@@ -22,31 +22,25 @@ export const getPackagePage = (req: Request, res: Response) => {
     return;
   }
 
-  // create dummy package
-  const testPackage = new OneDayPackage(
-    654321,
-    'Alice Johnson',
-    '789 Oak St',
-    'Bob Brown',
-    '101 Pine St',
-    2.0,
-    4.0,
-    2.0
-  );
+  // Find the package in the test data
+  const pkg = data.find((p) => p.getTrackingNumber() === packageID);
 
-  testPackage.updateStatus();
+  if (!pkg) {
+    res.status(404).send('Package not found');
+    return;
+  }
 
   res.render('package', {
-    id: testPackage.getTrackingNumber(),
-    type: testPackage.getShippingMethod(),
-    status: testPackage.getStatus(),
-    senderName: testPackage.getSenderName(),
-    senderAddress: testPackage.getSenderAddress(),
-    receiverName: testPackage.getReceiverName(),
-    receiverAddress: testPackage.getReceiverAddress(),
-    weight: testPackage.getWeight(),
-    costPerUnitWeight: testPackage.getCostPerUnitWeight(),
-    flatFee: testPackage.getFlatFee(),
+    id: pkg.getTrackingNumber(),
+    type: pkg.constructor.name,
+    status: pkg.getStatus(),
+    senderName: pkg.getSenderName(),
+    senderAddress: pkg.getSenderAddress(),
+    receiverName: pkg.getReceiverName(),
+    receiverAddress: pkg.getReceiverAddress(),
+    weight: pkg.getWeight(),
+    costPerUnitWeight: pkg.getCostPerUnitWeight(),
+    flatFee: pkg instanceof OneDayPackage ? pkg.getFlatFee() : undefined,
   });
 };
 
