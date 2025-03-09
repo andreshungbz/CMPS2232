@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { OneDayPackage } from '../classes/OneDayPackage.js';
-import { data } from '../utils/data.js';
+import { OneDayPackage } from '../classes/OneDayPackage';
+import { data } from '../utils/data';
 
 export const getHomePage = (_req: Request, res: Response) => {
   res.render('index');

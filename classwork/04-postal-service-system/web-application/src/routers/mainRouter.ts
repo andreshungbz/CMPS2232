@@ -5,7 +5,7 @@ import {
   getPackagesPage,
   getPackagePage,
   getAddPackagePage,
-} from '../controllers/main-controller.js';
+} from '../controllers/main-controller';
 
 const mainRouter = express.Router();
 

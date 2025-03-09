@@ -1,8 +1,8 @@
 import express from 'express';
 import path from 'path';
-import logger from './middleware/logger.js';
-import getLocalIP from './utils/getLocalIP.js';
-import mainRouter from './routers/mainRouter.js';
+import logger from './middleware/logger';
+import getLocalIP from './utils/getLocalIP';
+import mainRouter from './routers/mainRouter';
 
 const app = express();
 const PORT = 3000;
