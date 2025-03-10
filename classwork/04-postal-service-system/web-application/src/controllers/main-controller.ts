@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { OneDayPackage } from '../classes/OneDayPackage';
+import { OneDayPackage } from '../classes/package-one-day/OneDayPackage';
 import { data } from '../utils/data';
 
 export const getHomePage = (_req: Request, res: Response) => {

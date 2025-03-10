@@ -1,12 +1,12 @@
 // Two Day Package Class Implementation
 
-import { PackageStatus } from '../enums/packageStatus';
+import { Package } from '../package/Package';
+import { ITwoDayPackage } from './ITwoDayPackage';
+
 import { ShippingMethod } from '../enums/shippingMethod';
-import { ITwoDayPackage } from '../interfaces/ITwoDayPackage';
+import { PackageStatus } from '../enums/packageStatus';
 
-import { PackageImpl } from './PackageImpl';
-
-export class TwoDayPackageImpl extends PackageImpl implements ITwoDayPackage {
+export class TwoDayPackage extends Package implements ITwoDayPackage {
   // constructor
 
   constructor(
@@ -18,8 +18,8 @@ export class TwoDayPackageImpl extends PackageImpl implements ITwoDayPackage {
     protected weight: number,
     protected costPerUnitWeight: number,
     protected flatFee: number, // extra flat fee data member is declared here and set in constructor
-    protected shippingMethod: ShippingMethod,
-    protected status: PackageStatus
+    protected shippingMethod: ShippingMethod = ShippingMethod.TwoDay,
+    protected status: PackageStatus = PackageStatus.Created
   ) {
     super(
       trackingNumber,

@@ -1,10 +1,11 @@
 // Package Class Implementation
 
-import { PackageStatus } from '../enums/packageStatus';
-import { ShippingMethod } from '../enums/shippingMethod';
-import { IPackage } from '../interfaces/IPackage';
+import { IPackage } from './IPackage';
 
-export class PackageImpl implements IPackage {
+import { ShippingMethod } from '../enums/shippingMethod';
+import { PackageStatus } from '../enums/packageStatus';
+
+export class Package implements IPackage {
   // constructor
   // this shorthand automatically declares the data members
 
@@ -16,9 +17,44 @@ export class PackageImpl implements IPackage {
     protected receiverAddress: string,
     protected weight: number,
     protected costPerUnitWeight: number,
-    protected shippingMethod: ShippingMethod,
-    protected status: PackageStatus
+    protected shippingMethod: ShippingMethod = ShippingMethod.Standard,
+    protected status: PackageStatus = PackageStatus.Created
   ) {}
+
+  // methods (member functions)
+
+  calculateCost(): number {
+    return this.weight * this.costPerUnitWeight;
+  }
+
+  printLabel(): void {
+    console.log(`[Package Details]`);
+    console.log(`Shipping Method: ${this.shippingMethod}`);
+    console.log(`Status: ${this.status}`);
+    console.log(
+      `From ${this.senderName} (${this.senderAddress}) to ${this.receiverName} (${this.senderAddress})`
+    );
+    console.log(`Weight (lbs): ${this.weight}`);
+    console.log(`Cost Per Unit Weight: $${this.costPerUnitWeight}`);
+
+    console.log(`Total Cost: $${this.calculateCost()}`);
+  }
+
+  updateStatus(): boolean {
+    switch (this.status) {
+      case PackageStatus.Created:
+        this.status = PackageStatus.Shipped;
+        return true;
+      case PackageStatus.Shipped:
+        this.status = PackageStatus.InTransit;
+        return true;
+      case PackageStatus.InTransit:
+        this.status = PackageStatus.Delivered;
+        return true;
+      case PackageStatus.Delivered:
+        return false;
+    }
+  }
 
   // getters
 
@@ -78,40 +114,5 @@ export class PackageImpl implements IPackage {
   }
   setCostPerUnitWeight(costPerUnitWeight: number): void {
     this.costPerUnitWeight = costPerUnitWeight;
-  }
-
-  calculateCost(): number {
-    return this.weight * this.costPerUnitWeight;
-  }
-
-  // methods (member functions)
-
-  printLabel(): void {
-    console.log(`[Package Details]`);
-    console.log(`Shipping Method: ${this.shippingMethod}`);
-    console.log(`Status: ${this.status}`);
-    console.log(
-      `From ${this.senderName} (${this.senderAddress}) to ${this.receiverName} (${this.senderAddress})`
-    );
-    console.log(`Weight (lbs): ${this.weight}`);
-    console.log(`Cost Per Unit Weight: $${this.costPerUnitWeight}`);
-
-    console.log(`Total Cost: $${this.calculateCost()}`);
-  }
-
-  updateStatus(): boolean {
-    switch (this.status) {
-      case PackageStatus.Created:
-        this.status = PackageStatus.Shipped;
-        return true;
-      case PackageStatus.Shipped:
-        this.status = PackageStatus.InTransit;
-        return true;
-      case PackageStatus.InTransit:
-        this.status = PackageStatus.Delivered;
-        return true;
-      case PackageStatus.Delivered:
-        return false;
-    }
   }
 }

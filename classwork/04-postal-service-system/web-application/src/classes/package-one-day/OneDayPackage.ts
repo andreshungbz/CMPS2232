@@ -1,12 +1,12 @@
 // One Day Package Class Implementation
 
-import { PackageStatus } from '../enums/packageStatus';
+import { Package } from '../package/Package';
+import { IOneDayPackage } from './IOneDayPackage';
+
 import { ShippingMethod } from '../enums/shippingMethod';
-import { IOneDayPackage } from '../interfaces/IOneDayPackage';
+import { PackageStatus } from '../enums/packageStatus';
 
-import { PackageImpl } from './PackageImpl';
-
-export class OneDayPackageImpl extends PackageImpl implements IOneDayPackage {
+export class OneDayPackage extends Package implements IOneDayPackage {
   // constructor
 
   constructor(
@@ -18,8 +18,8 @@ export class OneDayPackageImpl extends PackageImpl implements IOneDayPackage {
     protected weight: number,
     protected costPerUnitWeight: number,
     protected flatFee: number, // extra flat fee data member is declared here and set in constructor
-    protected shippingMethod: ShippingMethod,
-    protected status: PackageStatus
+    protected shippingMethod: ShippingMethod = ShippingMethod.OneDay,
+    protected status: PackageStatus = PackageStatus.Created
   ) {
     super(
       trackingNumber,

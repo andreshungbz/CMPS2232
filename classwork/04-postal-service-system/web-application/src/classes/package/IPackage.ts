@@ -1,10 +1,25 @@
-// Package Interface
+// Package Interface (Header)
 
 import { ShippingMethod } from '../enums/shippingMethod';
 import { PackageStatus } from '../enums/packageStatus';
 
 export interface IPackage {
+  // data members (needs to be commented so implementation can apply protected access specifier)
+
+  // trackingNumber: number;
+  // senderName: string;
+  // senderAddress: string;
+  // receiverName: string;
+  // receiverAddress: string;
+  // weight: number;
+  // costPerUnitWeight: number;
+  // shippingMethod: ShippingMethod;
+  // status: PackageStatus;
+
   // methods (member functions)
+  calculateCost(): number;
+  printLabel(): void;
+  updateStatus(): boolean;
 
   // getters
   getTrackingNumber(): number;
@@ -27,8 +42,4 @@ export interface IPackage {
   setReceiverAddress(receiverAddress: string): void;
   setWeight(weight: number): void;
   setCostPerUnitWeight(costPerUnitWeight: number): void;
-
-  calculateCost(): number;
-  printLabel(): void;
-  updateStatus(): boolean;
 }

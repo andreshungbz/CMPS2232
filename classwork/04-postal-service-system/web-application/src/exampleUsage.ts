@@ -1,6 +1,6 @@
-import { Package } from './classes/Package';
-import { OneDayPackage } from './classes/OneDayPackage';
-import { TwoDayPackage } from './classes/TwoDayPackage';
+import { Package } from './classes/package/Package';
+import { OneDayPackage } from './classes/package-one-day/OneDayPackage';
+import { TwoDayPackage } from './classes/package-two-day/TwoDayPackage';
 
 const packageTest = new Package(
   123456,
