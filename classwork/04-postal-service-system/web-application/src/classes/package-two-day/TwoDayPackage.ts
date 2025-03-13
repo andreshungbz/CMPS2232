@@ -3,8 +3,8 @@
 import { Package } from '../package/Package';
 import { ITwoDayPackage } from './ITwoDayPackage';
 
-import { ShippingMethod } from '../enums/shippingMethod';
-import { PackageStatus } from '../enums/packageStatus';
+import { ShippingMethod } from '../../enums/shippingMethod';
+import { PackageStatus } from '../../enums/packageStatus';
 
 export class TwoDayPackage extends Package implements ITwoDayPackage {
   // constructor

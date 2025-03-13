@@ -2,8 +2,8 @@
 
 import { IPackage } from './IPackage';
 
-import { ShippingMethod } from '../enums/shippingMethod';
-import { PackageStatus } from '../enums/packageStatus';
+import { ShippingMethod } from '../../enums/shippingMethod';
+import { PackageStatus } from '../../enums/packageStatus';
 
 export class Package implements IPackage {
   // constructor

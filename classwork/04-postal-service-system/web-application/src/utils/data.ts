@@ -1,8 +1,8 @@
 import { Package } from '../classes/package/Package';
 import { OneDayPackage } from '../classes/package-one-day/OneDayPackage';
 import { TwoDayPackage } from '../classes/package-two-day/TwoDayPackage';
-import { PackageStatus } from '../classes/enums/packageStatus';
-import { ShippingMethod } from '../classes/enums/shippingMethod';
+import { PackageStatus } from '../enums/packageStatus';
+import { ShippingMethod } from '../enums/shippingMethod';
 
 export const data = [
   new Package(

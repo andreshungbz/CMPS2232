@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { OneDayPackage } from '../classes/package-one-day/OneDayPackage';
+import { TwoDayPackage } from '../classes/package-two-day/TwoDayPackage';
 import { data } from '../utils/data';
 
 export const getHomePage = (_req: Request, res: Response) => {
@@ -40,7 +41,10 @@ export const getPackagePage = (req: Request, res: Response) => {
     receiverAddress: pkg.getReceiverAddress(),
     weight: pkg.getWeight(),
     costPerUnitWeight: pkg.getCostPerUnitWeight(),
-    flatFee: pkg instanceof OneDayPackage ? pkg.getFlatFee() : undefined,
+    flatFee:
+      pkg instanceof OneDayPackage || pkg instanceof TwoDayPackage
+        ? pkg.getFlatFee()
+        : undefined,
   });
 };
 
