@@ -44,3 +44,7 @@ npm run dev
 ```
 
 5. The console log will show the link with the appropriate port (3000 by default) that can be opened in the browser.
+
+## Assumptions
+
+- Package is NOT an abstract class and represents a regular package with not expedited shipping.
