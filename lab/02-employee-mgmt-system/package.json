@@ -1,0 +1,29 @@
+{
+  "name": "02-employee-mgmt-system",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "Andres Hung",
+  "type": "module",
+  "main": "main.js",
+  "scripts": {
+    "clean": "rm -rf build",
+    "build": "npm run clean && tsc",
+    "start": "npm run build && node build/main.js",
+    "dev": "tsc && concurrently -k -n \"TS,NODE\" -c \"cyan,green\" \"tsc --watch\" \"wait-on build/main.js && node --watch build/main.js\"",
+    "dbsetup": "psql --username=postgres --file=src/db/scripts/setup.sql",
+    "dbtables": "psql --username=emp_user --dbname=cmps2232_emp_mgmt_sys --file=src/db/scripts/tables.sql",
+    "initiatedb": "npm run dbsetup && npm run dbtables"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.13.17",
+    "concurrently": "^9.1.2",
+    "typescript": "^5.8.2",
+    "wait-on": "^8.0.3"
+  }
+}
