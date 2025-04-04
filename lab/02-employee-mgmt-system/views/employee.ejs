@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee Details</title>
+  </head>
+  <body>
+    <header>
+      <h1><a href="/">Employee Management System</a></h1>
+    </header>
+    <main>
+      <h2>Employee Details</h2>
+      <section>
+        <p>ID: <%= employee.getEmployeeID() %></p>
+        <p>Name: <%= employee.getName() %></p>
+        <p>Salary: $<%= employee.calculateSalary() %></p>
+      </section>
+      <section>
+        <p>Type: <%= type %></p>
+        <% if (type === 'FullTimeEmployee') { %>
+        <p>Annual Salary: $<%= employee.getAnnualSalary() %></p>
+        <% } else if (type === 'PartTimeEmployee') { %>
+        <p>Hourly Rate: $<%= employee.getHourlyRate() %></p>
+        <p>Hours Worked: <%= employee.getHoursWorked() %></p>
+        <% } else { %>
+        <p>Unknown employee type.</p>
+        <% } %>
+      </section>
+    </main>
+  </body>
+</html>

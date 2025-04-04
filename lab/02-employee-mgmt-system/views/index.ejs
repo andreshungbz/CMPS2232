@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employees</title>
+  </head>
+  <body>
+    <header>
+      <h1><a href="/">Employee Management System</a></h1>
+    </header>
+    <main>
+      <section>
+        <h2>Add Full-Time Employee</h2>
+        <form method="POST" , action="/add-employee">
+          <div>
+            <label
+              >Employee Name: <input type="text" name="name" required
+            /></label>
+          </div>
+          <div>
+            <label
+              >Annual Salary:
+              <input type="number" name="annual_salary" required
+            /></label>
+          </div>
+          <input type="hidden" name="type" value="Full-Time" />
+          <button type="submit">Submit</button>
+        </form>
+      </section>
+      <section>
+        <h2>Add Part-Time Employee</h2>
+        <form method="POST" , action="/add-employee">
+          <div>
+            <label
+              >Employee Name: <input type="text" name="name" required
+            /></label>
+          </div>
+          <div>
+            <label
+              >Hourly Rate: <input type="number" name="hourly_rate" required
+            /></label>
+          </div>
+          <div>
+            <label
+              >Hours Worked: <input type="number" name="hours_worked" required
+            /></label>
+          </div>
+          <input type="hidden" name="type" value="Part-Time" />
+          <button type="submit">Submit</button>
+        </form>
+      </section>
+      <section>
+        <h2>Employees</h2>
+        <ul>
+          <% employees && employees.forEach(emp => { %>
+          <li>
+            <a href="/employee/<%= emp.getEmployeeID() %>"
+              >[<%= emp.getEmployeeID() %>] <%= emp.getName() %></a
+            >
+          </li>
+          <% }) %>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>

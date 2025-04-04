@@ -1,5 +1,9 @@
 import { IEmployee } from './IEmployee.js';
 
 export interface IFullTimeEmployee extends IEmployee {
-  annualSalary: number;
+  calculateSalary(): number;
+  displayDetails(): void;
+
+  getAnnualSalary(): number;
+  setAnnualSalary(annual_salary: number): void;
 }

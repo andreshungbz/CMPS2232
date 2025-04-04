@@ -18,3 +18,5 @@ qmake-build-*/
 
 # node modules
 node_modules/
+
+.env

@@ -1,7 +1,14 @@
 export interface IEmployee {
-  employee_id: number;
-  name: string;
-
   calculateSalary(): number;
   displayDetails(): void;
+
+  // getters
+
+  getEmployeeID(): number;
+  getName(): string;
+
+  // setters
+
+  setEmployeeID(id: number): void;
+  setName(name: string): void;
 }
