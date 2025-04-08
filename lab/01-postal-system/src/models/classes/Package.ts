@@ -1,11 +1,11 @@
 // Package Class Implementation
 
-import { IPackage } from './IPackage';
+import { IPackage } from '../interfaces/IPackage.js';
 
-import { ShippingMethod } from '../../enums/shippingMethod';
-import { PackageStatus } from '../../enums/packageStatus';
+import { ShippingMethod } from '../../lib/enums/ShippingMethod.js';
+import { PackageStatus } from '../../lib/enums/PackageStatus.js';
 
-export class Package implements IPackage {
+export abstract class Package implements IPackage {
   // constructor
   // this shorthand automatically declares the data members
 
@@ -17,7 +17,7 @@ export class Package implements IPackage {
     protected receiverAddress: string,
     protected weight: number,
     protected costPerUnitWeight: number,
-    protected shippingMethod: ShippingMethod = ShippingMethod.Standard,
+    protected shippingMethod: ShippingMethod = ShippingMethod.OneDay,
     protected status: PackageStatus = PackageStatus.Created
   ) {}
 

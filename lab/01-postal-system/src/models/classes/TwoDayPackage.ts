@@ -1,10 +1,10 @@
 // Two Day Package Class Implementation
 
-import { Package } from '../package/Package';
-import { ITwoDayPackage } from './ITwoDayPackage';
+import { Package } from './Package.js';
+import { ITwoDayPackage } from '../interfaces/ITwoDayPackage.js';
 
-import { ShippingMethod } from '../../enums/shippingMethod';
-import { PackageStatus } from '../../enums/packageStatus';
+import { ShippingMethod } from '../../lib/enums/ShippingMethod.js';
+import { PackageStatus } from '../../lib/enums/PackageStatus.js';
 
 export class TwoDayPackage extends Package implements ITwoDayPackage {
   // constructor

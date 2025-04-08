@@ -1,7 +1,7 @@
 // Package Interface (Header)
 
-import { ShippingMethod } from '../../enums/shippingMethod';
-import { PackageStatus } from '../../enums/packageStatus';
+import { ShippingMethod } from '../../lib/enums/ShippingMethod.js';
+import { PackageStatus } from '../../lib/enums/PackageStatus.js';
 
 export interface IPackage {
   // data members (needs to be commented so implementation can apply protected access specifier)

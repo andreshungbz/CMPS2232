@@ -1,6 +1,6 @@
 // One Day Package Interface (Header)
 
-import { IPackage } from '../package/IPackage';
+import { IPackage } from './IPackage.js';
 
 export interface IOneDayPackage extends IPackage {
   // data members (needs to be commented so implementation can apply protected access specifier)

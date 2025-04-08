@@ -1,9 +1,9 @@
-// Filename: getLocalIP.ts
+// Filename: getLocalIPAddress.ts
 // utility function that returns the host's local IP address or `localhost`
 
 import os from 'node:os';
 
-export default function getLocalIP(): string {
+const getLocalIPAddress = (): string => {
   const interfaces = os.networkInterfaces();
   for (const name of Object.keys(interfaces)) {
     const ifaceList = interfaces[name];
@@ -16,4 +16,6 @@ export default function getLocalIP(): string {
     }
   }
   return 'localhost';
-}
+};
+
+export default getLocalIPAddress;
