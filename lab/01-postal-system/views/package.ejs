@@ -2,62 +2,94 @@
 <html lang="en">
   <head>
     <%- include('partials/common-meta') %>
-    <title>Package #<%= id %></title>
+    <title>Package #<%= pkg.getTrackingNumber() %></title>
   </head>
   <body>
     <main>
       <%- include('partials/header') %>
-      <h2><%= type %> Package Details</h2>
-      <form>
-        <label
-          >Tracking Number: <input type="number" value="<%= id %>" disabled />
-        </label>
-        <label
-          >Package Type:
-          <input type="text" value="<%= type %> Package" disabled />
-        </label>
-        <label
-          >Shipping Method: <input type="text" value="<%= type %>" disabled />
-        </label>
-        <label
-          >Status: <input type="text" value="<%= status %>" disabled />
-        </label>
-        <label
-          >Sender Name: <input type="text" value="<%= senderName %>" disabled />
-        </label>
-        <label
-          >Sender Address:
-          <input type="text" value="<%= senderAddress %>" disabled />
-        </label>
-        <label
-          >Receiver Name:
-          <input type="text" value="<%= receiverName %>" disabled />
-        </label>
-        <label
-          >Receiver Address:
-          <input type="text" value="<%= receiverAddress %>" disabled />
-        </label>
-        <label
-          >Weight (lbs)<input type="number" value="<%= weight %>" disabled />
-        </label>
-        <label
-          >Cost Per Unit Weight<input
-            type="number"
-            value="<%= costPerUnitWeight %>"
-            disabled
-          />
-        </label>
-        <label
-          >Flat Fee<input type="number" value="<%= flatFee %>" disabled />
-        </label>
-      </form>
-      <div class="action-buttons">
-        <form><button>Update to Next Status</button></form>
-        <form><button>Delete Package</button></form>
-        <form method="GET" action-="/">
-          <button type="submit">Back</button>
+      <nav>
+        <% if (pkg.getStatus() === 'Delivered') { %>
+        <form method="POST" action="#">
+          <button type="button" class="disabled" disabled>
+            Move Status Forward
+          </button>
         </form>
-      </div>
+        <% } else { %>
+        <form
+          method="POST"
+          action="/package/<%= pkg.getTrackingNumber() %>/update"
+        >
+          <button type="submit" class="update">Move Status Forward</button>
+        </form>
+        <% } %>
+        <form
+          method="POST"
+          action="/package/<%= pkg.getTrackingNumber() %>/delete"
+        >
+          <button type="submit" class="delete">Delete Package</button>
+        </form>
+      </nav>
+
+      <h2>Package Details</h2>
+
+      <h3>General Information</h3>
+      <table class="package-details">
+        <tr>
+          <th>Tracking Number</th>
+          <td><%= pkg.getTrackingNumber() %></td>
+        </tr>
+        <tr>
+          <th>Shipping Method</th>
+          <td><%= pkg.getShippingMethod() %></td>
+        </tr>
+        <tr>
+          <th>Status</th>
+          <td>
+            <%= pkg.getStatus() %> <% if (pkg.getStatus() === 'Delivered') { %>
+            ✅ <% } %>
+          </td>
+        </tr>
+      </table>
+
+      <h3>Sender Information</h3>
+      <table class="package-details">
+        <tr>
+          <th>Sender Name</th>
+          <td><%= pkg.getSenderName() %></td>
+        </tr>
+        <tr>
+          <th>Sender Address</th>
+          <td><%= pkg.getSenderAddress() %></td>
+        </tr>
+      </table>
+
+      <h3>Receiver Information</h3>
+      <table class="package-details">
+        <tr>
+          <th>Receiver Name</th>
+          <td><%= pkg.getReceiverName() %></td>
+        </tr>
+        <tr>
+          <th>Receiver Address</th>
+          <td><%= pkg.getReceiverAddress() %></td>
+        </tr>
+      </table>
+
+      <h3>Costs</h3>
+      <table class="package-details">
+        <tr>
+          <th>Weight (kg)</th>
+          <td><%= pkg.getWeight() %></td>
+        </tr>
+        <tr>
+          <th>Cost Per Unit Weight ($)</th>
+          <td><%= pkg.getCostPerUnitWeight() %></td>
+        </tr>
+        <tr>
+          <th>Flat Fee ($)</th>
+          <td><%= pkg.getFlatFee() %></td>
+        </tr>
+      </table>
     </main>
   </body>
 </html>

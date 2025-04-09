@@ -6,35 +6,12 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-h1,
-h2,
-ul {
-  text-align: center;
-}
-
 main {
   border: 2px solid black;
   border-radius: 5px;
   padding: 25px 50px;
   margin: 25px auto;
   max-width: 700px;
-}
-
-form {
-  width: 500px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-label {
-  display: flex;
-  gap: 10px;
-}
-
-input {
-  flex: 1;
 }
 
 ul {
@@ -47,4 +24,144 @@ ul {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.input {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.input label {
+  flex: 0 0 150px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+
+.input input,
+.input select {
+  flex: 1;
+  min-width: 0;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.input button {
+  width: 100%;
+  padding: 5px;
+}
+
+@media (max-width: 600px) {
+  .input {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .input label {
+    flex: 0;
+    margin-right: 0;
+  }
+}
+
+.pkg-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.package-details th {
+  width: 200px; /* Ancho fijo para las celdas de encabezado */
+  background-color: #f4f4f4;
+  font-weight: bold;
+  text-align: left;
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+.package-details td {
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+.package-details {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 16px;
+}
+
+.package-details th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+.package-details tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.package-details tr:hover {
+  background-color: #f1f1f1;
+}
+
+nav a {
+  display: inline-block;
+  padding: 7px 10px;
+  background-color: #98a2ab;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+  background-color: #5a6268;
+}
+
+nav form {
+  display: inline-block;
+}
+
+nav button {
+  display: inline-block;
+  padding: 7px 10px;
+  background-color: #98a2ab; /* Gris por defecto */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+nav button:hover {
+  background-color: #5a6268; /* Gris más oscuro al pasar el cursor */
+}
+
+nav button.update {
+  background-color: #28a745; /* Verde para "Move Status Forward" */
+}
+
+nav button.update:hover {
+  background-color: #218838; /* Verde más oscuro al pasar el cursor */
+}
+
+nav button.delete {
+  background-color: #dc3545; /* Rojo para "Delete Package" */
+}
+
+nav button.delete:hover {
+  background-color: #c82333; /* Rojo más oscuro al pasar el cursor */
+}
+
+nav button.disabled {
+  background-color: #ccc; /* Gris claro para botones deshabilitados */
+  color: #666;
+  cursor: not-allowed;
 }

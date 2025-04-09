@@ -1,0 +1,65 @@
+<form method="POST" action="/package/add">
+  <div class="input">
+    <label for="shippingMethod">Shipping Method:</label>
+    <select id="shippingMethod" name="shippingMethod" required>
+      <option value="One-Day">One-Day</option>
+      <option value="Two-Day">Two-Day</option>
+    </select>
+  </div>
+
+  <div class="input">
+    <label for="senderName">Sender Name:</label>
+    <input type="text" id="senderName" name="senderName" required />
+  </div>
+
+  <div class="input">
+    <label for="senderAddress">Sender Address:</label>
+    <input type="text" id="senderAddress" name="senderAddress" required />
+  </div>
+
+  <div class="input">
+    <label for="receiverName">Receiver Name:</label>
+    <input type="text" id="receiverName" name="receiverName" required />
+  </div>
+
+  <div class="input">
+    <label for="receiverAddress">Receiver Address:</label>
+    <input
+      type="text"
+      id="receiverAddress"
+      name="receiverAddress"
+      required
+    />
+  </div class="input">
+
+  <div class="input">
+    <label for="weight">Weight (kg):</label>
+    <input type="number" id="weight" name="weight" step="0.01" required />
+  </div>
+
+  <div class="input">
+    <label for="costPerUnitWeight">Cost Per Unit Weight ($):</label>
+    <input
+      type="number"
+      id="costPerUnitWeight"
+      name="costPerUnitWeight"
+      step="0.01"
+      required
+    />
+  </div>
+
+  <div class="input">
+    <label for="flatFee">Flat Fee ($):</label>
+    <input
+      type="number"
+      id="flatFee"
+      name="flatFee"
+      step="0.01"
+      required
+    />
+  </div>
+
+  <div class="input">
+    <button type="submit">Add Package</button>
+  </div>
+</form>

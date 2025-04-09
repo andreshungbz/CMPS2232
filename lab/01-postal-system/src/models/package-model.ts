@@ -11,7 +11,9 @@ import { TwoDayPackage } from './classes/TwoDayPackage.js';
 
 export const readPackages = async (): Promise<Package[]> => {
   try {
-    const result = await query('SELECT * FROM package');
+    const result = await query(
+      'SELECT * FROM package ORDER BY tracking_number ASC'
+    );
 
     return result.rows.map((pkg) => {
       switch (pkg.shipping_method) {
@@ -97,11 +99,27 @@ export const readPackage = async (trackingNumber: number): Promise<Package> => {
   }
 };
 
+export const readNextTrackingNumber = async (): Promise<number> => {
+  try {
+    const result = await query(
+      'SELECT MAX(tracking_number) AS max_tracking_number FROM package',
+      []
+    );
+
+    return (result.rowCount ?? 0) > 0
+      ? result.rows[0].max_tracking_number + 1
+      : 1;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
 // DELETE
 
 export const deletePackage = async (trackingNumber: number) => {
   try {
-    await query('DELETE FROM package WHERE tracking_number = $', [
+    await query('DELETE FROM package WHERE tracking_number = $1', [
       trackingNumber,
     ]);
   } catch (error) {
