@@ -8,4 +8,7 @@ export interface IOneDayPackage extends IPackage {
 
   // setters
   setFlatFee(flateFee: number): void;
+
+  // database
+  createRecord(): Promise<void>;
 }

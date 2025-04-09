@@ -6,6 +6,8 @@ import { IOneDayPackage } from '../interfaces/IOneDayPackage.js';
 import { ShippingMethod } from '../../lib/enums/ShippingMethod.js';
 import { PackageStatus } from '../../lib/enums/PackageStatus.js';
 
+import { query } from '../../db/database.js';
+
 export class OneDayPackage extends Package implements IOneDayPackage {
   // constructor
 
@@ -57,5 +59,30 @@ export class OneDayPackage extends Package implements IOneDayPackage {
 
   setFlatFee(flatFee: number): void {
     this.flatFee = flatFee;
+  }
+
+  // database methods
+
+  async createRecord(): Promise<void> {
+    try {
+      await query(
+        'INSERT INTO package VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)',
+        [
+          this.getTrackingNumber(),
+          this.getShippingMethod(),
+          this.getStatus(),
+          this.getSenderName(),
+          this.getSenderAddress(),
+          this.getReceiverName(),
+          this.getReceiverAddress(),
+          this.getWeight(),
+          this.getCostPerUnitWeight(),
+          this.getFlatFee(),
+        ]
+      );
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
   }
 }
