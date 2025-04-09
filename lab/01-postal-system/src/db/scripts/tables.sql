@@ -23,7 +23,7 @@ CREATE TABLE shipping_method (
 CREATE TABLE package (
     tracking_number SERIAL PRIMARY KEY,
     shipping_method VARCHAR(100) NOT NULL REFERENCES shipping_method(method),
-    status VARCHAR(100) REFERENCES NOT NULL package_status(status),
+    status VARCHAR(100) NOT NULL REFERENCES  package_status(status),
     sender_name TEXT NOT NULL,
     sender_address TEXT NOT NULL,
     receiver_name TEXT NOT NULL,
@@ -44,3 +44,14 @@ INSERT INTO package_status VALUES
 INSERT INTO shipping_method VALUES
     ('One-Day', 'Packages to be delivered in one day.'),
     ('Two-Day', 'Packages to be delivered in two days.');
+
+INSERT INTO package (
+    shipping_method, status, sender_name, sender_address, 
+    receiver_name, receiver_address, weight, cost_per_unit_weight, flat_fee
+) VALUES
+    ('One-Day', 'Created', 'Alice Johnson', '123 Elm St, Springfield', 
+     'Bob Smith', '456 Oak St, Shelbyville', 2.5, 10.00, 5.00),
+    ('Two-Day', 'Shipped', 'Charlie Brown', '789 Pine St, Capital City', 
+     'Diana Prince', '101 Maple St, Metropolis', 5.0, 8.00, 3.00),
+    ('One-Day', 'In-Transit', 'Eve Adams', '321 Birch St, Gotham', 
+     'Frank Castle', '654 Cedar St, Star City', 1.2, 12.00, 4.00);

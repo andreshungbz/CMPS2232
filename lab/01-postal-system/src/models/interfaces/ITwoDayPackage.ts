@@ -3,10 +3,6 @@
 import { IPackage } from './IPackage.js';
 
 export interface ITwoDayPackage extends IPackage {
-  // data members (needs to be commented so implementation can apply protected access specifier)
-
-  // flatFee: number;
-
   // getters
   getFlatFee(): number;
 

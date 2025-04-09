@@ -17,27 +17,24 @@ export abstract class Package implements IPackage {
     protected receiverAddress: string,
     protected weight: number,
     protected costPerUnitWeight: number,
-    protected shippingMethod: ShippingMethod = ShippingMethod.OneDay,
+    protected shippingMethod: ShippingMethod,
     protected status: PackageStatus = PackageStatus.Created
   ) {}
 
   // methods (member functions)
 
   calculateCost(): number {
-    return this.weight * this.costPerUnitWeight;
+    return this.getWeight() * this.getCostPerUnitWeight();
   }
 
   printLabel(): void {
-    console.log(`[Package Details]`);
-    console.log(`Shipping Method: ${this.shippingMethod}`);
-    console.log(`Status: ${this.status}`);
+    console.log(`Shipping Method: ${this.getShippingMethod()}`);
+    console.log(`Status: ${this.getStatus()}`);
     console.log(
-      `From ${this.senderName} (${this.senderAddress}) to ${this.receiverName} (${this.senderAddress})`
+      `From ${this.getSenderName()} (${this.getSenderAddress()}) to ${this.getReceiverName()} (${this.getReceiverAddress()})`
     );
-    console.log(`Weight (lbs): ${this.weight}`);
-    console.log(`Cost Per Unit Weight: $${this.costPerUnitWeight}`);
-
-    console.log(`Total Cost: $${this.calculateCost()}`);
+    console.log(`Weight (lbs): ${this.getWeight()}`);
+    console.log(`Cost Per Unit Weight: $${this.getCostPerUnitWeight()}`);
   }
 
   updateStatus(): boolean {
@@ -51,7 +48,7 @@ export abstract class Package implements IPackage {
       case PackageStatus.InTransit:
         this.status = PackageStatus.Delivered;
         return true;
-      case PackageStatus.Delivered:
+      default:
         return false;
     }
   }
