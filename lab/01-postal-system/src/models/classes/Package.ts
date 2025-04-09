@@ -5,6 +5,8 @@ import { IPackage } from '../interfaces/IPackage.js';
 import { ShippingMethod } from '../../lib/enums/ShippingMethod.js';
 import { PackageStatus } from '../../lib/enums/PackageStatus.js';
 
+import { query } from '../../db/database.js';
+
 export abstract class Package implements IPackage {
   // constructor
   // this shorthand automatically declares the data members
@@ -37,19 +39,29 @@ export abstract class Package implements IPackage {
     console.log(`Cost Per Unit Weight: $${this.getCostPerUnitWeight()}`);
   }
 
-  updateStatus(): boolean {
-    switch (this.status) {
-      case PackageStatus.Created:
-        this.status = PackageStatus.Shipped;
-        return true;
-      case PackageStatus.Shipped:
-        this.status = PackageStatus.InTransit;
-        return true;
-      case PackageStatus.InTransit:
-        this.status = PackageStatus.Delivered;
-        return true;
-      default:
-        return false;
+  async updateStatus() {
+    try {
+      switch (this.status) {
+        case PackageStatus.Created:
+          this.setStatus(PackageStatus.Shipped);
+          break;
+        case PackageStatus.Shipped:
+          this.setStatus(PackageStatus.InTransit);
+          break;
+        case PackageStatus.InTransit:
+          this.setStatus(PackageStatus.Delivered);
+          break;
+        default:
+          throw new Error('Invalid Package Status');
+      }
+
+      await query('UPDATE package SET status = $1 WHERE tracking_number = $2', [
+        this.getStatus(),
+        this.getTrackingNumber(),
+      ]);
+    } catch (error) {
+      console.error(error);
+      throw error;
     }
   }
 

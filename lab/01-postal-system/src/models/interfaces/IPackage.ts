@@ -7,7 +7,7 @@ export interface IPackage {
   // methods (member functions)
   calculateCost(): number;
   printLabel(): void;
-  updateStatus(): boolean;
+  updateStatus(): void;
 
   // getters
   getTrackingNumber(): number;
