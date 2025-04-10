@@ -1,4 +1,5 @@
 // Filename: main-route.ts
+// basic routes of the application
 
 import express from 'express';
 import {

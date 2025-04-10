@@ -1,3 +1,5 @@
+/* Global Styles */
+
 * {
   box-sizing: border-box;
 }
@@ -7,23 +9,23 @@ body {
 }
 
 main {
+  max-width: 700px;
+  margin: 25px auto;
+  padding: 25px 50px;
   border: 2px solid black;
   border-radius: 5px;
-  padding: 25px 50px;
-  margin: 25px auto;
-  max-width: 700px;
 }
 
 ul {
-  list-style: none;
   padding: 0;
+  list-style: none;
 }
 
 .action-buttons {
-  margin-top: 10px;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-top: 10px;
 }
 
 .input {
@@ -53,18 +55,6 @@ ul {
   padding: 5px;
 }
 
-@media (max-width: 600px) {
-  .input {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .input label {
-    flex: 0;
-    margin-right: 0;
-  }
-}
-
 .pkg-list {
   display: flex;
   flex-direction: column;
@@ -72,12 +62,12 @@ ul {
 }
 
 .package-details th {
-  width: 200px; /* Ancho fijo para las celdas de encabezado */
+  width: 200px;
+  padding: 8px;
   background-color: #f4f4f4;
+  border: 1px solid #ddd;
   font-weight: bold;
   text-align: left;
-  padding: 8px;
-  border: 1px solid #ddd;
 }
 
 .package-details td {
@@ -86,8 +76,8 @@ ul {
 }
 
 .package-details {
-  width: 100%;
   border-collapse: collapse;
+  width: 100%;
   margin: 20px 0;
   font-size: 16px;
 }
@@ -108,14 +98,14 @@ ul {
 nav a {
   display: inline-block;
   padding: 7px 10px;
+  transition: background-color 0.3s ease;
   background-color: #98a2ab;
-  color: white;
-  text-decoration: none;
   border-radius: 5px;
   font-size: 14px;
   font-weight: bold;
+  color: white;
   text-align: center;
-  transition: background-color 0.3s ease;
+  text-decoration: none;
 }
 
 nav a:hover {
@@ -129,39 +119,51 @@ nav form {
 nav button {
   display: inline-block;
   padding: 7px 10px;
-  background-color: #98a2ab; /* Gris por defecto */
-  color: white;
+  transition: background-color 0.3s ease;
+  background-color: #98a2ab;
+  cursor: pointer;
   border: none;
   border-radius: 5px;
   font-size: 14px;
   font-weight: bold;
+  color: white;
   text-align: center;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
 nav button:hover {
-  background-color: #5a6268; /* Gris más oscuro al pasar el cursor */
+  background-color: #5a6268;
 }
 
 nav button.update {
-  background-color: #28a745; /* Verde para "Move Status Forward" */
+  background-color: #28a745;
 }
 
 nav button.update:hover {
-  background-color: #218838; /* Verde más oscuro al pasar el cursor */
+  background-color: #218838;
 }
 
 nav button.delete {
-  background-color: #dc3545; /* Rojo para "Delete Package" */
+  background-color: #dc3545;
 }
 
 nav button.delete:hover {
-  background-color: #c82333; /* Rojo más oscuro al pasar el cursor */
+  background-color: #c82333;
 }
 
 nav button.disabled {
-  background-color: #ccc; /* Gris claro para botones deshabilitados */
-  color: #666;
+  background-color: #ccc;
   cursor: not-allowed;
+  color: #666;
+}
+
+@media (max-width: 600px) {
+  .input {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .input label {
+    flex: 0;
+    margin-right: 0;
+  }
 }

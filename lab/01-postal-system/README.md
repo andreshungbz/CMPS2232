@@ -1,50 +1,60 @@
-# Postal System Classes & Screens Demo
+# Lab 1 - Postal System
 
-> [!NOTE]  
-> This demo only showcases classes and basic screens without any backend functionality.
+The Postal System web application is a demonstration of using object-oriented programming principles. It combines the use of classes, a simple frontend, and a PostgreSQL database for data persistence. It allows viewing a list of two types of packages, adding packages, deleting packages, and updating their statuses.
 
-Done by Andres Hung for CMPS2232. This project uses Node.js, Express.js, and EJS templating in accordance to what we're doing in CMPS2212 GUI Programming. TypeScript is used for the classes, but also for everything else.
+This project was done by Andres Hung for CMPS2232 Object Oriented Programming course in the 2024-2 semester.
 
-## Relevant Files (No Installation Required)
+## Noteable Files/Directories
 
-Since installation expects running in some Unix environment, if you want to examine the relevant files directly instead of doing any installation, they can be examined in the following directories:
+### `/src/models/classes` & `/src/models/interfaces` (Classes)
 
-### `/src/classes` (Classes)
+The TypeScript interfaces in `/src/models/interfaces` are analogous to C++ header files and ensures the classes adhere to the defined structure through the `implements` keyword. Data members are not declared here, but in the class definitions in order to enforce access specifiers. If they were declared here, they must be public. Class method implementations are located in the exported class files in `/src/models/classes`.
 
-The closest analogue I could make to C++ header/source files is using TypeScript interfaces and classes. Interfaces acts as the header files because they conveniently show all of the methods to be implemented by the class, although there are some quirks (e.g. can't have private/protected specifiers so they have to go in the class file). The class files act as the implementation files where you can see the properties and methods details. In practice, the class files are imported (as opposed to to including header files in C++).
+### MVC Architecture
 
-For example, `/src/classes/package/IPackage.ts` is the "header file" for the Package class, and `/src/classes/package/Package.ts` is the implementation file for the Package class.
-
-### `/src/controllers/main-controller.ts` and `/src/utils/data.ts` (Class Usage)
-
-You can see instances of the classes being instantiated using the constructor here.
-
-### `/screenshots` (Screens)
-
-Screenshots of the EJS views in a running application.
+This project follows a simple MVC architecture. EJS HTML templates are located in `/views`, controllers are in `/src/controllers/main-controller.ts`, and the models are in `/src/models/package-model.ts`. Bringing everything together is the `/src/main.ts` file which creates a basic Express server and the `/src/db/database.ts` file which handles the connection to the PostgreSQL database.
 
 ## Running the Project
 
-The main application just has simple navigation to the relevant screens.
+> [!NOTE]  
+> Ensure you have Node.js installed and a PostgreSQL server running on your machine with at `postgres` superuser.
 
-To run the application, do the following steps:
+1. Change directory to the project root.
 
-1. Have Node LTS version installed.
-2. Change directory to the project root.
-3. Install the dependencies with the command:
+```
+cd 01-postal-system
+```
+
+2. Copy sample environment variables to a new file.
+
+```
+cp .env.example .env
+```
+
+3. Install project dependencies.
 
 ```
 npm install
 ```
 
-4. Run the server with the command:
+4. Setup the database and example data.
+
+> [!NOTE]  
+> You may be prompted for a password during this process. The default password for `postal_user` is `swordfish`. The commands executed are located in the `package.json` file and the database scripts under `/src/db/scripts`.
+
+```
+npm run initiatedb
+```
+
+5. Run the server.
 
 ```
 npm run dev
 ```
 
-5. The console log will show the link with the appropriate port (3000 by default) that can be opened in the browser.
+6. Navigate to the address printed in the console or `http://localhost:3000` in your web browser.
 
 ## Assumptions
 
-- Package is NOT an abstract class and represents a regular package with not expedited shipping.
+- Package is an abstract class and cannot be instantiated.
+- One-Day Packages and Two-Day Packages calculate their cost differently but have the same extra data members.

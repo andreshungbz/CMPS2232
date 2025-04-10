@@ -2,13 +2,15 @@
 // various functions that interact with the database
 
 import { query } from '../db/database.js';
+
 import { ShippingMethod } from '../lib/enums/ShippingMethod.js';
-import { OneDayPackage } from './classes/OneDayPackage.js';
 import { Package } from './classes/Package.js';
+import { OneDayPackage } from './classes/OneDayPackage.js';
 import { TwoDayPackage } from './classes/TwoDayPackage.js';
 
 // READ
 
+// retrieves all packages and creates the appropriate derived class objects
 export const readPackages = async (): Promise<Package[]> => {
   try {
     const result = await query(
@@ -53,6 +55,7 @@ export const readPackages = async (): Promise<Package[]> => {
   }
 };
 
+// retrieves a single package from the databsae and creates the appropriate derived class object
 export const readPackage = async (trackingNumber: number): Promise<Package> => {
   try {
     const result = await query(
@@ -99,6 +102,7 @@ export const readPackage = async (trackingNumber: number): Promise<Package> => {
   }
 };
 
+// used to determine the next tracking number to use when adding a new package
 export const readNextTrackingNumber = async (): Promise<number> => {
   try {
     const result = await query(
@@ -117,6 +121,7 @@ export const readNextTrackingNumber = async (): Promise<number> => {
 
 // DELETE
 
+// deletes a package by its tracking number
 export const deletePackage = async (trackingNumber: number) => {
   try {
     await query('DELETE FROM package WHERE tracking_number = $1', [

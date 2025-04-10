@@ -1,4 +1,5 @@
 // Filename: main-controller.ts
+// HTTP request handlers that manipulate packages
 
 import { Request, Response } from 'express';
 
@@ -13,6 +14,7 @@ import { ShippingMethod } from '../lib/enums/ShippingMethod.js';
 import { OneDayPackage } from '../models/classes/OneDayPackage.js';
 import { TwoDayPackage } from '../models/classes/TwoDayPackage.js';
 
+// index page that lists all packages
 export const getIndex = async (_req: Request, res: Response) => {
   try {
     const packages = await readPackages();
@@ -22,10 +24,12 @@ export const getIndex = async (_req: Request, res: Response) => {
   }
 };
 
+// renders the page to add packages
 export const getAddPackage = (_req: Request, res: Response) => {
   res.render('add-package');
 };
 
+// creates an object of a derived class of Package and writes it to the database
 export const postPackage = async (req: Request, res: Response) => {
   try {
     const {
@@ -73,13 +77,13 @@ export const postPackage = async (req: Request, res: Response) => {
 
     await pkg.createRecord();
     pkg.printLabel();
-
     res.redirect('/');
   } catch (error) {
     res.render('error', { error });
   }
 };
 
+// gets the details of a single package and renders the page for package operations
 export const getPackage = async (req: Request, res: Response) => {
   try {
     const trackingNumber = Number(req.params.tracking);
@@ -87,15 +91,13 @@ export const getPackage = async (req: Request, res: Response) => {
 
     const pkg = await readPackage(trackingNumber);
 
-    res.render('package', {
-      pkg,
-      shippingMethod: pkg.getShippingMethod(),
-    });
+    res.render('package', { pkg });
   } catch (error) {
     res.render('error', { error });
   }
 };
 
+// updates the status of a package
 export const patchStatus = async (req: Request, res: Response) => {
   try {
     const trackingNumber = Number(req.params.tracking);
@@ -110,6 +112,7 @@ export const patchStatus = async (req: Request, res: Response) => {
   }
 };
 
+// deletes package from the database
 export const removePackage = async (req: Request, res: Response) => {
   try {
     const trackingNumber = Number(req.params.tracking);

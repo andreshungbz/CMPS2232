@@ -1,3 +1,6 @@
+// Filename: main.ts
+// runs an Express server instance
+
 import express from 'express';
 import path from 'path';
 
