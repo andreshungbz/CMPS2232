@@ -8,7 +8,7 @@ const logger = (req: Request, _res: Response, next: NextFunction) => {
   // https://www.localeplanet.com/icu/en-BZ/index.html
   const now = new Date().toLocaleString('en-BZ', { hour12: true });
 
-  console.log(`[EMS] [${now}] ${req.method} ${req.url}`);
+  console.log(`[PS] [${now}] ${req.method} ${req.url}`);
   next();
 };
 

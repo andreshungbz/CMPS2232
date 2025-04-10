@@ -24,9 +24,9 @@ export const readPackages = async (): Promise<Package[]> => {
             pkg.sender_address,
             pkg.receiver_name,
             pkg.receiver_address,
-            pkg.weight,
-            pkg.cost_per_unit_weight,
-            pkg.flat_fee,
+            Number(pkg.weight),
+            Number(pkg.cost_per_unit_weight),
+            Number(pkg.flat_fee),
             ShippingMethod.OneDay,
             pkg.status
           );
@@ -37,9 +37,9 @@ export const readPackages = async (): Promise<Package[]> => {
             pkg.sender_address,
             pkg.receiver_name,
             pkg.receiver_address,
-            pkg.weight,
-            pkg.cost_per_unit_weight,
-            pkg.flat_fee,
+            Number(pkg.weight),
+            Number(pkg.cost_per_unit_weight),
+            Number(pkg.flat_fee),
             ShippingMethod.TwoDay,
             pkg.status
           );
@@ -71,9 +71,9 @@ export const readPackage = async (trackingNumber: number): Promise<Package> => {
           pkg.sender_address,
           pkg.receiver_name,
           pkg.receiver_address,
-          pkg.weight,
-          pkg.cost_per_unit_weight,
-          pkg.flat_fee,
+          Number(pkg.weight),
+          Number(pkg.cost_per_unit_weight),
+          Number(pkg.flat_fee),
           ShippingMethod.OneDay,
           pkg.status
         );
@@ -84,9 +84,9 @@ export const readPackage = async (trackingNumber: number): Promise<Package> => {
           pkg.sender_address,
           pkg.receiver_name,
           pkg.receiver_address,
-          pkg.weight,
-          pkg.cost_per_unit_weight,
-          pkg.flat_fee,
+          Number(pkg.weight),
+          Number(pkg.cost_per_unit_weight),
+          Number(pkg.flat_fee),
           ShippingMethod.TwoDay,
           pkg.status
         );

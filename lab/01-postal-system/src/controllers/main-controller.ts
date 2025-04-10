@@ -72,6 +72,7 @@ export const postPackage = async (req: Request, res: Response) => {
     }
 
     await pkg.createRecord();
+    pkg.printLabel();
 
     res.redirect('/');
   } catch (error) {

@@ -82,12 +82,25 @@
           <td><%= pkg.getWeight() %></td>
         </tr>
         <tr>
-          <th>Cost Per Unit Weight ($)</th>
-          <td><%= pkg.getCostPerUnitWeight() %></td>
+          <th>Cost Per Unit Weight</th>
+          <td>
+            <%= pkg.getCostPerUnitWeight().toLocaleString('en-US', { style:
+            'currency', currency: 'USD' }) %>
+          </td>
         </tr>
         <tr>
-          <th>Flat Fee ($)</th>
-          <td><%= pkg.getFlatFee() %></td>
+          <th>Flat Fee</th>
+          <td>
+            <%= pkg.getFlatFee().toLocaleString('en-US', { style: 'currency',
+            currency: 'USD' }) %>
+          </td>
+        </tr>
+        <tr>
+          <th>Total Cost</th>
+          <td>
+            <%= pkg.calculateCost().toLocaleString('en-US', { style: 'currency',
+            currency: 'USD' }) %>
+          </td>
         </tr>
       </table>
     </main>
