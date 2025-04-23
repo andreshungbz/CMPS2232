@@ -10,6 +10,10 @@ This project was done by Andres Hung for CMPS2232 Object Oriented Programming co
 
 The TypeScript interfaces in `/src/models/interfaces` are analogous to C++ header files and ensures the classes adhere to the defined structure through the `implements` keyword. Data members are not declared here, but in the class definitions in order to enforce access specifiers. If they were declared here, they must be public. Class method implementations are located in the exported class files in `/src/models/classes`.
 
+### 'screenshots' (Screenshots)
+
+The screenshots directory contains images of the web application in action. The running application steps should work but everyone's PostgreSQL could be set up differently. If there are any unusual problems let me know.
+
 ### MVC Architecture
 
 This project follows a simple MVC architecture. EJS HTML templates are located in `/views`, controllers are in `/src/controllers/main-controller.ts`, and the models are in `/src/models/package-model.ts`. Bringing everything together is the `/src/main.ts` file which creates a basic Express server and the `/src/db/database.ts` file which handles the connection to the PostgreSQL database.
