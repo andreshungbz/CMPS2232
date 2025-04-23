@@ -41,36 +41,82 @@ cp .env.example .env
 npm install
 ```
 
-4. Log into `psql` as the `postgres` superuser and paste the following, which will create a new user the rest of scripts will use.
+## Database Steps
+
+1. Login to `psql` as the `postgres` superuser and paste the following in the `psql` prompt:
 
 ```
 DROP DATABASE IF EXISTS cmps2232_postal_sys;
 DROP USER IF EXISTS postal_user;
 CREATE USER postal_user WITH CREATEDB PASSWORD 'swordfish';
+CREATE DATABASE cmps2232_postal_sys OWNER postal_user;
 ```
 
-5. Exit `psql`.
+2. Login as `postal_user` in the new database
 
 ```
-\q
+\c cmps2232_postal_sys postal_user
 ```
 
-6. Setup the database and example data.
-
-> [!NOTE]  
-> You may be prompted for a password during this process. The default password for `postal_user` is `swordfish`. The commands executed are located in the `package.json` file and the database scripts under `/src/db/scripts`.
+3. Create the tables
 
 ```
-npm run dbinitiate
+CREATE TABLE package_status (
+    status VARCHAR(100) PRIMARY KEY,
+    description VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE shipping_method (
+    method VARCHAR(100) PRIMARY KEY,
+    description VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE package (
+    tracking_number SERIAL PRIMARY KEY,
+    shipping_method VARCHAR(100) NOT NULL REFERENCES shipping_method(method),
+    status VARCHAR(100) NOT NULL REFERENCES  package_status(status),
+    sender_name TEXT NOT NULL,
+    sender_address TEXT NOT NULL,
+    receiver_name TEXT NOT NULL,
+    receiver_address TEXT NOT NULL,
+    weight NUMERIC(10,2) NOT NULL,
+    cost_per_unit_weight NUMERIC(10,2) NOT NULL,
+    flat_fee NUMERIC(10,2)
+);
 ```
 
-7. Run the server.
+4. Insert some initial data
+
+```
+INSERT INTO package_status VALUES
+    ('Created', 'Initial status where a package entry has been created.'),
+    ('Shipped', 'When the package has left its initial facility.'),
+    ('In-Transit', 'A package that is in another shipping facility other than the first.'),
+    ('Delivered', 'A package that has reached its recipient.');
+
+INSERT INTO shipping_method VALUES
+    ('One-Day', 'Packages to be delivered in one day.'),
+    ('Two-Day', 'Packages to be delivered in two days.');
+
+INSERT INTO package (
+    shipping_method, status, sender_name, sender_address,
+    receiver_name, receiver_address, weight, cost_per_unit_weight, flat_fee
+) VALUES
+    ('One-Day', 'Created', 'Alice Johnson', '123 Elm St, Springfield',
+     'Bob Smith', '456 Oak St, Shelbyville', 2.5, 10.00, 5.00),
+    ('Two-Day', 'Shipped', 'Charlie Brown', '789 Pine St, Capital City',
+     'Diana Prince', '101 Maple St, Metropolis', 5.0, 8.00, 3.00),
+    ('One-Day', 'In-Transit', 'Eve Adams', '321 Birch St, Gotham',
+     'Frank Castle', '654 Cedar St, Star City', 1.2, 12.00, 4.00);
+```
+
+## Run the server
 
 ```
 npm run dev
 ```
 
-8. Navigate to the address printed in the console or `http://localhost:3000` in your web browser.
+Navigate to the address printed in the console or `http://localhost:3000` in your web browser.
 
 ## Assumptions
 
