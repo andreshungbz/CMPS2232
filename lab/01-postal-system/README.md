@@ -52,7 +52,7 @@ CREATE USER postal_user WITH CREATEDB PASSWORD 'swordfish';
 CREATE DATABASE cmps2232_postal_sys OWNER postal_user;
 ```
 
-2. Login as `postal_user` in the new database
+2. Login as `postal_user` in the new database (password: `swordfish`)
 
 ```
 \c cmps2232_postal_sys postal_user
