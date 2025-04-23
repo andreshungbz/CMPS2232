@@ -1,22 +1,22 @@
 # Lab 1 - Postal System
 
-The Postal System web application is a demonstration of using object-oriented programming principles. It combines the use of classes, a simple frontend, and a PostgreSQL database for data persistence. It allows viewing a list of two types of packages, adding packages, deleting packages, and updating their statuses.
+The Postal System web application is a demonstration of using object-oriented programming principles. It combines classes, a simple frontend, and a PostgreSQL database for data persistence. It allows viewing a list of two types of packages, adding, deleting, and updating their statuses.
 
-This project was done by Andres Hung for CMPS2232 Object Oriented Programming course in the 2024-2 semester.
+This project was done by Andres Hung for the CMPS2232 Object Oriented Programming course in the 2024-2 semester.
 
-## Noteable Files/Directories
+## Notable Files/Directories
 
 ### `/src/models/classes` & `/src/models/interfaces` (Classes)
 
-The TypeScript interfaces in `/src/models/interfaces` are analogous to C++ header files and ensures the classes adhere to the defined structure through the `implements` keyword. Data members are not declared here, but in the class definitions in order to enforce access specifiers. If they were declared here, they must be public. Class method implementations are located in the exported class files in `/src/models/classes`.
+The TypeScript interfaces in `/src/models/interfaces` are analogous to C++ header files and ensure the classes adhere to the defined structure through the `implements` keyword. Data members are not declared here, but in the class definitions, to enforce access specifiers. If they were declared here, they must be public. Class method implementations are in the exported class files in `/src/models/classes`.
 
-### 'screenshots' (Screenshots)
+### `screenshots` (Screenshots)
 
-The screenshots directory contains images of the web application in action. The running application steps should work but everyone's PostgreSQL could be set up differently. If there are any unusual problems let me know.
+The screenshots directory contains images of the web application in action. The running application steps should work, but everyone's PostgreSQL could be set up differently. If there are any unusual problems, let me know.
 
 ### MVC Architecture
 
-This project follows a simple MVC architecture. EJS HTML templates are located in `/views`, controllers are in `/src/controllers/main-controller.ts`, and the models are in `/src/models/package-model.ts`. Bringing everything together is the `/src/main.ts` file which creates a basic Express server and the `/src/db/database.ts` file which handles the connection to the PostgreSQL database.
+This project follows a simple MVC architecture. EJS HTML templates are in `/views`, controllers are in `/src/controllers/main-controller.ts`, and the models are in `/src/models/package-model.ts`. Bringing everything together is the `/src/main.ts` file, which creates a basic Express server, and the `/src/db/database.ts` file, which handles the connection to the PostgreSQL database.
 
 ## Running the Project
 
