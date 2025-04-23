@@ -52,10 +52,10 @@ CREATE USER postal_user WITH CREATEDB PASSWORD 'swordfish';
 CREATE DATABASE cmps2232_postal_sys OWNER postal_user;
 ```
 
-2. Login as `postal_user` in the new database (password: `swordfish`)
+2. Connect to into the new database
 
 ```
-\c cmps2232_postal_sys postal_user
+\c cmps2232_postal_sys postgres
 ```
 
 3. Create the tables
@@ -83,6 +83,10 @@ CREATE TABLE package (
     cost_per_unit_weight NUMERIC(10,2) NOT NULL,
     flat_fee NUMERIC(10,2)
 );
+
+ALTER TABLE package_status OWNER TO postal_user;
+ALTER TABLE shipping_method OWNER TO postal_user;
+ALTER TABLE package OWNER TO postal_user;
 ```
 
 4. Insert some initial data
@@ -109,6 +113,8 @@ INSERT INTO package (
     ('One-Day', 'In-Transit', 'Eve Adams', '321 Birch St, Gotham',
      'Frank Castle', '654 Cedar St, Star City', 1.2, 12.00, 4.00);
 ```
+
+Exit `psql` with `\q`.
 
 ## Run the server
 
