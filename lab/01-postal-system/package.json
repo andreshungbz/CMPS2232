@@ -11,9 +11,9 @@
     "build": "npm run clean && tsc",
     "start": "npm run build && node build/main.js",
     "dev": "tsc && concurrently -k -n \"TS,NODE\" -c \"cyan,green\" \"tsc --watch\" \"wait-on build/main.js && node --watch build/main.js\"",
-    "dbsetup": "psql --username=postgres --file=src/db/scripts/setup.sql",
+    "dbsetup": "psql --username=postal_user --dbname=postgres --file=src/db/scripts/setup.sql",
     "dbtables": "psql --username=postal_user --dbname=cmps2232_postal_sys --file=src/db/scripts/tables.sql",
-    "initiatedb": "npm run dbsetup && npm run dbtables"
+    "dbinitiate": "npm run dbsetup && npm run dbtables"
   },
   "dependencies": {
     "dotenv": "^16.4.7",

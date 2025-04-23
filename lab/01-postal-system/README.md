@@ -17,7 +17,7 @@ This project follows a simple MVC architecture. EJS HTML templates are located i
 ## Running the Project
 
 > [!NOTE]  
-> Ensure you have Node.js installed and a PostgreSQL server running on your machine with at `postgres` superuser.
+> Ensure you have Node.js installed and a PostgreSQL server running on your machine with a `postgres` superuser and the default `postgres` database. Instructions assume a Linux environment.
 
 1. Change directory to the project root.
 
@@ -37,22 +37,36 @@ cp .env.example .env
 npm install
 ```
 
-4. Setup the database and example data.
+4. Log into `psql` as the `postgres` superuser and paste the following, which will create a new user the rest of scripts will use.
+
+```
+DROP DATABASE IF EXISTS cmps2232_postal_sys;
+DROP USER IF EXISTS postal_user;
+CREATE USER postal_user WITH CREATEDB PASSWORD 'swordfish';
+```
+
+5. Exit `psql`.
+
+```
+\q
+```
+
+6. Setup the database and example data.
 
 > [!NOTE]  
 > You may be prompted for a password during this process. The default password for `postal_user` is `swordfish`. The commands executed are located in the `package.json` file and the database scripts under `/src/db/scripts`.
 
 ```
-npm run initiatedb
+npm run dbinitiate
 ```
 
-5. Run the server.
+7. Run the server.
 
 ```
 npm run dev
 ```
 
-6. Navigate to the address printed in the console or `http://localhost:3000` in your web browser.
+8. Navigate to the address printed in the console or `http://localhost:3000` in your web browser.
 
 ## Assumptions
 
